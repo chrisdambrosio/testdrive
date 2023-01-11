@@ -6,14 +6,23 @@ To start your Phoenix server:
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Getting a greeting:
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+```
+$ curl http://localhost:4000/api/greetings\?name\=Chris
+{"action":"get","message":"Hello, Chris!","name":"Chris"}
+```
 
-## Learn more
+```
+$ curl http://localhost:4000/api/greetings
+{"action":"get","message":"Hello, stranger!","name":"stranger"
+```
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```
+$ curl \
+  -X POST https://localhost:4000/api/greetings \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Chris"}'
+
+{"action":"post","message":"Hello, Chris!","name":"Chris"}
+```

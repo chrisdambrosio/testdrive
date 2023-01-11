@@ -20,6 +20,13 @@ defmodule TestdriveWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", TestdriveWeb do
+    pipe_through :api
+
+    post "/greetings", GreetingController, :post
+    get "/greetings", GreetingController, :get
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TestdriveWeb do
   #   pipe_through :api
